@@ -111,7 +111,7 @@ workflows:
           terraform-version: << pipeline.parameters.terraform-version >>
           before-terraform:
             - set-environment:
-                account: nonprod
+                account: nonprod-2
           filters: *on-push-main
 
       - approve nonprod changes:
@@ -129,7 +129,7 @@ workflows:
           terraform-version: << pipeline.parameters.terraform-version >>
           before-terraform:
             - set-environment:
-                account: nonprod
+                account: nonprod-2
           after-terraform:
             - do/circle-deploy
             # - do/slack-webhook:
