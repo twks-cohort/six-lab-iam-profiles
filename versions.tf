@@ -10,7 +10,7 @@ terraform {
     hostname     = "app.terraform.io"
     organization = "twks-cohort"
     workspaces {
-      prefix = "six-lab-iam-profiles-2"
+      prefix = "six-lab-iam-profiles"
     }
   }
 }
