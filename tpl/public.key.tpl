@@ -1,1 +1,1 @@
-op://empc-lab/svc-gpg-public.key/notesPlain
+op://cohorts/six-svc-gpg-public.key/notesPlain
