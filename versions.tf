@@ -4,16 +4,13 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
     }
-    # datadog = {
-    #   source = "DataDog/datadog"
-    # }
   }
 
   backend "remote" {
     hostname     = "app.terraform.io"
     organization = "twks-cohort"
     workspaces {
-      prefix = "six-lab-iam-profiles-"
+      prefix = "six-lab-iam-profiles-2"
     }
   }
 }
@@ -35,8 +32,3 @@ provider "aws" {
     }
   }
 }
-
-# provider "datadog" {
-#   api_key = var.datadog_api_key
-#   app_key = var.datadog_app_key
-# }
