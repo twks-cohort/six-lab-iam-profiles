@@ -148,51 +148,51 @@ workflows:
           filters: *on-push-main
 
   # deploy roles to prod:
-    jobs:
-      - terraform/plan:
-          name: prod change plan
-          context: << pipeline.parameters.context >>
-          shell: op run --env-file op.prod.env -- /bin/bash -eo pipefail
-          workspace: prod
-          executor-image: << pipeline.parameters.executor-image >>
-          terraform-version: << pipeline.parameters.terraform-version >>
-          before-terraform:
-            - set-environment:
-                account: prod
-          filters: *on-tag-main
+    # jobs:
+    #   - terraform/plan:
+    #       name: prod change plan
+    #       context: << pipeline.parameters.context >>
+    #       shell: op run --env-file op.prod.env -- /bin/bash -eo pipefail
+    #       workspace: prod
+    #       executor-image: << pipeline.parameters.executor-image >>
+    #       terraform-version: << pipeline.parameters.terraform-version >>
+    #       before-terraform:
+    #         - set-environment:
+    #             account: prod
+    #       filters: *on-tag-main
 
-      - approve prod changes:
-          type: approval
-          requires:
-            - prod change plan
-          filters: *on-tag-main
+    #   - approve prod changes:
+    #       type: approval
+    #       requires:
+    #         - prod change plan
+    #       filters: *on-tag-main
 
-      - terraform/apply:
-          name: apply prod changes
-          context: << pipeline.parameters.context >>
-          shell: op run --env-file op.prod.env -- /bin/bash -eo pipefail
-          workspace: prod
-          executor-image: << pipeline.parameters.executor-image >>
-          terraform-version: << pipeline.parameters.terraform-version >>
-          before-terraform:
-            - set-environment:
-                account: prod
-          after-terraform:
-            - do/circle-deploy
-            - do/slack-webhook:
-                message: lab-iam-profile prod release
-                webhook-url: $LAB_EVENTS_CHANNEL_WEBHOOK
-          requires:
-            - approve prod changes
-          filters: *on-tag-main
+    #   - terraform/apply:
+    #       name: apply prod changes
+    #       context: << pipeline.parameters.context >>
+    #       shell: op run --env-file op.prod.env -- /bin/bash -eo pipefail
+    #       workspace: prod
+    #       executor-image: << pipeline.parameters.executor-image >>
+    #       terraform-version: << pipeline.parameters.terraform-version >>
+    #       before-terraform:
+    #         - set-environment:
+    #             account: prod
+    #       after-terraform:
+    #         - do/circle-deploy
+    #         - do/slack-webhook:
+    #             message: lab-iam-profile prod release
+    #             webhook-url: $LAB_EVENTS_CHANNEL_WEBHOOK
+    #       requires:
+    #         - approve prod changes
+    #       filters: *on-tag-main
 
-      - validate configuration and store profile credentials:
-          name: test prod iam profiles configuration
-          context: << pipeline.parameters.context >>
-          account: prod
-          requires:
-            - apply prod changes
-          filters: *on-tag-main
+    #   - validate configuration and store profile credentials:
+    #       name: test prod iam profiles configuration
+    #       context: << pipeline.parameters.context >>
+    #       account: prod
+    #       requires:
+    #         - apply prod changes
+    #       filters: *on-tag-main
 
   # generate-release-notes:
   #   jobs:
