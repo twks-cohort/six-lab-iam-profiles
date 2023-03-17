@@ -130,8 +130,8 @@ workflows:
           before-terraform:
             - set-environment:
                 account: nonprod
-          after-terraform:
-            - do/circle-deploy
+          # after-terraform:
+            # - do/circle-deploy
             # - do/slack-webhook:
             #     message: lab-iam-profile nonprod deployment
             #     webhook-url: $LAB_EVENTS_CHANNEL_WEBHOOK
