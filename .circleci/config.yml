@@ -2,7 +2,7 @@
 version: 2.1
 
 orbs:
-  terraform: twdps/terraform@0.6.0
+  terraform: twdps/terraform@1.3.3
   op: twdps/onepassword@1.0.0
   do: twdps/pipeline-events@0.1.0
 
@@ -16,7 +16,7 @@ parameters:
   context:
     description: circleci context for all jobs
     type: string
-    default: twdps-core-labs-team
+    default: cohorts
   executor-image:
     description: image to use for terraform runs
     type: string
@@ -132,9 +132,9 @@ workflows:
                 account: nonprod
           after-terraform:
             - do/circle-deploy
-            - do/slack-webhook:
-                message: lab-iam-profile nonprod deployment
-                webhook-url: $LAB_EVENTS_CHANNEL_WEBHOOK
+            # - do/slack-webhook:
+            #     message: lab-iam-profile nonprod deployment
+            #     webhook-url: $LAB_EVENTS_CHANNEL_WEBHOOK
           requires:
             - approve nonprod changes
           filters: *on-push-main
@@ -147,7 +147,7 @@ workflows:
             - apply nonprod changes
           filters: *on-push-main
 
-  deploy roles to prod:
+  # deploy roles to prod:
     jobs:
       - terraform/plan:
           name: prod change plan
@@ -216,9 +216,4 @@ workflows:
           name: nightly nonprod iam profiles validation
           context: << pipeline.parameters.context >>
           account: nonprod
-          test-only: true
-      - validate configuration and store profile credentials:
-          name: nightly prod iam profiles validation
-          context: << pipeline.parameters.context >>
-          account: prod
           test-only: true
