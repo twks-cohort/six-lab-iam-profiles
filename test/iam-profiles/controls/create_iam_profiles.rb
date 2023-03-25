@@ -22,19 +22,8 @@ describe aws_iam_group(group_name: 'DPSNonprodServiceAccountGroup') do
   its('users') { should include('DPSNonprodServiceAccount') }
 end
 
-# describe aws_iam_group(group_name: 'DPSProdServiceAccountGroup') do
-#   it { should exist }
-#   its('users') { should include('DPSProdServiceAccount') }
-# end
-
-# describe aws_iam_group(group_name: 'DPSCoreLabsTeamGroup') do
-#   it { should exist }
-# end
 
 describe aws_iam_user(user_name: 'DPSNonprodServiceAccount') do
   it { should exist }
 end
 
-# describe aws_iam_user(user_name: 'DPSProdServiceAccount') do
-#   it { should exist }
-# end

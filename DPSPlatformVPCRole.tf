@@ -162,6 +162,9 @@ resource "aws_iam_policy" "DPSPlatformVPCRolePolicy" {
         "rds:AddTagsToResource",
         "rds:ListTagsForResource",
         "rds:RemoveTagsFromResource",
+        "iam:CreatePolicy",
+        "iam:CreateRole",
+        "logs:CreateLogGroup"
         ]
         "Effect": "Allow"
         "Resource": "*"
