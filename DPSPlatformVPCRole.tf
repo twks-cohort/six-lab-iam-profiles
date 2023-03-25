@@ -170,7 +170,8 @@ resource "aws_iam_policy" "DPSPlatformVPCRolePolicy" {
         "logs:CreateLogStream",
         "logs:PutLogEvents",
         "logs:DescribeLogGroups",
-        "logs:DescribeLogStreams"
+        "logs:DescribeLogStreams",
+        "logs:ListTagsLogGroup"
         ]
         "Effect": "Allow"
         "Resource": "*"
