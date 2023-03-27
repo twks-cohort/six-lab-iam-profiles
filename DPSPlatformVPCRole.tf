@@ -167,6 +167,8 @@ resource "aws_iam_policy" "DPSPlatformVPCRolePolicy" {
         "iam:CreateRole",
         "iam:GetRole",
         "iam:GetPolicy",
+        "iam:DeletePolicy",
+        "iam:DeleteRole",
         "iam:AttachRolePolicy",
         "iam:ListRolePolicies",
         "iam:ListPolicyVersions",
