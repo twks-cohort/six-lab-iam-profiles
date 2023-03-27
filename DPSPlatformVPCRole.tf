@@ -168,6 +168,8 @@ resource "aws_iam_policy" "DPSPlatformVPCRolePolicy" {
         "iam:GetRole",
         "iam:GetPolicy",
         "iam:AttachRolePolicy",
+        "iam:ListRolePolicies",
+        "iam:GetPolicyVersion",
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:DeleteLogGroup",
