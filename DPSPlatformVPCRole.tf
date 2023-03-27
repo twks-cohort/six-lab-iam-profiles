@@ -165,6 +165,7 @@ resource "aws_iam_policy" "DPSPlatformVPCRolePolicy" {
         "iam:CreatePolicy",
         "iam:Tag*",
         "iam:CreateRole",
+        "iam:PassRole",
         "iam:GetRole",
         "iam:GetPolicy",
         "iam:DeletePolicy",
